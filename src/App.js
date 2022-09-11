@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+
 import './App.css';
+import React, {useState} from "react";
 
 function App() {
+  const [look,setLook]=useState({backgroundColor:'rgb(238, 241, 0)'});
+  let happy={backgroundColor:'rgb(238, 241, 0)'}
+  let sad={backgroundColor:'rgb(19, 0, 164)'}
+  let sleepy={backgroundColor:'rgb(35, 177, 0)'}
+  let excited={backgroundColor:'rgb(255, 0, 66)'}
+  const handleChange=(e)=>{
+    console.log(e.target.value);
+    if(e.target.value ==="Sleepy"){
+      setLook(sleepy);
+    }else if(e.target.value ==="Sad"){
+      setLook(sad);
+    }else if(e.target.value ==="Excited"){
+      setLook(excited);
+    }else{
+      setLook(happy)
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="main">
+      <select onChange={handleChange}>
+        <option selected>Happy</option>
+        <option>Sad</option>
+        <option>Sleepy</option>
+        <option>Excited</option>
+      </select>
+      <div id="mood-indicator" style={look}></div>
+      {/* <div id="mood-indicator" style={{backgroundColor:'rgb(238, 241, 0)'}}></div> */}
     </div>
   );
 }
